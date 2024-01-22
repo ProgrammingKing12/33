@@ -1,6 +1,6 @@
 local p = game.Players.LocalPlayer
 local whitelist = {
-   ["hydra5fire5"] = true,
+   ["Creation_ofVex"] = true,
    ["0"] = true,
    ["0"] = true,
    ["0"] = true,
