@@ -1,25 +1,7 @@
 local p = game.Players.LocalPlayer
 local whitelist = {
-   ["Creation_ofVex"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true,
-   ["0"] = true
+   ["creation_ofVex"] = true,
+   ["3192705715"] = true,
 }
 
 if whitelist[p.Name] then
