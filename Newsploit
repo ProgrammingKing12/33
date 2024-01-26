@@ -36,44 +36,76 @@ if whitelist[p.Name] then
     local textLabel = Instance.new("TextLabel")
     textLabel.Text = "Kangaroo Scripts"
     textLabel.Size = UDim2.new(1, 0, 1, 0)
-    textLabel.TextColor3 = Color3.new(1, 0, 0) 
-    textLabel.BackgroundTransparency = 1 
+    textLabel.TextColor3 = Color3.new(1, 0, 0) -- Red text color
+    textLabel.BackgroundTransparency = 1 -- Transparent background
     textLabel.FontSize = Enum.FontSize.Size24
     textLabel.Parent = loadingScreen
 
-    loadingScreen.Enabled = true 
+    loadingScreen.Enabled = true -- Show the Loading Screen initially
 
-    wait(5) 
+    wait(5) -- Wait for 5 seconds before destroying
 
-    
+    -- Destroy the elements
     textLabel:Destroy()
     loadingScreen:Destroy()
 
     print("Loading screen destroyed")
 
-    
+    -- Creating the Main Screen
     local mainScreen = Instance.new("ScreenGui")
     mainScreen.Name = "Main"
     mainScreen.Parent = game.Players.LocalPlayer.PlayerGui
 
-    
-    local dinosaurNameTextBox = Instance.new("TextBox")
-    dinosaurNameTextBox.Name = "DinosaurNameTextBox"
-    dinosaurNameTextBox.PlaceholderText = "Enter Dinosaur Name"
-    dinosaurNameTextBox.Size = UDim2.new(0.3, 0, 0.1, 0)
-    dinosaurNameTextBox.Position = UDim2.new(0.35, 0, 0.35, 0)
-    dinosaurNameTextBox.BackgroundColor3 = Color3.new(0.8, 0.8, 0.8) 
-    dinosaurNameTextBox.TextColor3 = Color3.new(0, 0, 0)
-    dinosaurNameTextBox.FontSize = Enum.FontSize.Size18
-    dinosaurNameTextBox.Parent = mainScreen
+    -- Create a TextLabel for indicating the elder dinosaur input
+    local elderLabel = Instance.new("TextLabel")
+    elderLabel.Text = "Enter Elder Dinosaur:"
+    elderLabel.Size = UDim2.new(0.3, 0, 0.1, 0)
+    elderLabel.Position = UDim2.new(0.35, 0, 0.2, 0)
+    elderLabel.BackgroundColor3 = Color3.new(1, 1, 1) -- White background color
+    elderLabel.TextColor3 = Color3.new(0, 0, 0) -- Black text color
+    elderLabel.FontSize = Enum.FontSize.Size18
+    elderLabel.Parent = mainScreen
 
+    -- Create a TextBox for inputting the elder dinosaur name
+    local elderNameTextBox = Instance.new("TextBox")
+    elderNameTextBox.Name = "ElderNameTextBox"
+    elderNameTextBox.PlaceholderText = "Enter Elder Dinosaur Name"
+    elderNameTextBox.Size = UDim2.new(0.3, 0, 0.1, 0)
+    elderNameTextBox.Position = UDim2.new(0.35, 0, 0.3, 0)
+    elderNameTextBox.BackgroundColor3 = Color3.new(0.8, 0.8, 0.8) -- Light gray background color
+    elderNameTextBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
+    elderNameTextBox.FontSize = Enum.FontSize.Size18
+    elderNameTextBox.Parent = mainScreen
+
+    -- Create a TextLabel for indicating the target dinosaur input
+    local targetLabel = Instance.new("TextLabel")
+    targetLabel.Text = "Enter Target Dinosaur:"
+    targetLabel.Size = UDim2.new(0.3, 0, 0.1, 0)
+    targetLabel.Position = UDim2.new(0.35, 0, 0.4, 0)
+    targetLabel.BackgroundColor3 = Color3.new(1, 1, 1) -- White background color
+    targetLabel.TextColor3 = Color3.new(0, 0, 0) -- Black text color
+    targetLabel.FontSize = Enum.FontSize.Size18
+    targetLabel.Parent = mainScreen
+
+    -- Create a TextBox for inputting the target dinosaur name
+    local targetNameTextBox = Instance.new("TextBox")
+    targetNameTextBox.Name = "TargetNameTextBox"
+    targetNameTextBox.PlaceholderText = "Enter Target Dinosaur Name"
+    targetNameTextBox.Size = UDim2.new(0.3, 0, 0.1, 0)
+    targetNameTextBox.Position = UDim2.new(0.35, 0, 0.5, 0)
+    targetNameTextBox.BackgroundColor3 = Color3.new(0.8, 0.8, 0.8) -- Light gray background color
+    targetNameTextBox.TextColor3 = Color3.new(0, 0, 0) -- Black text color
+    targetNameTextBox.FontSize = Enum.FontSize.Size18
+    targetNameTextBox.Parent = mainScreen
+
+    -- Create a TextButton for giving elders
     local giveMeElderButton = Instance.new("TextButton")
     giveMeElderButton.Name = "GiveMeElderButton"
     giveMeElderButton.Text = "Give me elders!"
     giveMeElderButton.Size = UDim2.new(0.2, 0, 0.1, 0)
-    giveMeElderButton.Position = UDim2.new(0.4, 0, 0.45, 0)
-    giveMeElderButton.BackgroundColor3 = Color3.new(0.2, 0.8, 0.2) 
-    giveMeElderButton.TextColor3 = Color3.new(1, 1, 1) 
+    giveMeElderButton.Position = UDim2.new(0.4, 0, 0.65, 0)
+    giveMeElderButton.BackgroundColor3 = Color3.new(0.2, 0.8, 0.2) -- Green background color
+    giveMeElderButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
     giveMeElderButton.FontSize = Enum.FontSize.Size18
     giveMeElderButton.Parent = mainScreen
 
@@ -82,8 +114,8 @@ if whitelist[p.Name] then
         local t = 1
         local c = game.Players.LocalPlayer.Character
         local Menu = workspace.GameEvents.GoToMenu
-        local a = "Zenova"
-        local targ = dinosaurNameTextBox.Text 
+        local a = elderNameTextBox.Text -- Get the elder dinosaur name from the TextBox
+        local targ = targetNameTextBox.Text -- Get the target dinosaur name from the TextBox
 
         print("If adult, with baby stats, try a few more times for success.")
         workspace.GameEvents.ChangeDinosaur:FireServer(a)
@@ -98,24 +130,27 @@ if whitelist[p.Name] then
         print("It's a 1/8 chance to be an actual elder.")
     end)
 
+    -- Create a TextButton for closing the GUI
     local closeButton = Instance.new("TextButton")
     closeButton.Text = "X"
     closeButton.Size = UDim2.new(0.1, 0, 0.1, 0)
     closeButton.Position = UDim2.new(0.9, 0, 0, 0)
-    closeButton.BackgroundColor3 = Color3.new(0.8, 0.2, 0.2) 
-    closeButton.TextColor3 = Color3.new(1, 1, 1) 
+    closeButton.BackgroundColor3 = Color3.new(0.8, 0.2, 0.2) -- Red background color
+    closeButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
     closeButton.FontSize = Enum.FontSize.Size18
     closeButton.Parent = mainScreen
 
+    -- Create a TextButton for reopening the GUI
     local reopenButton = Instance.new("TextButton")
     reopenButton.Text = "O"
     reopenButton.Size = UDim2.new(0.1, 0, 0.1, 0)
     reopenButton.Position = UDim2.new(0, 0, 0.9, 0)
-    reopenButton.BackgroundColor3 = Color3.new(0.2, 0.8, 0.2) 
-    reopenButton.TextColor3 = Color3.new(1, 1, 1) 
+    reopenButton.BackgroundColor3 = Color3.new(0.2, 0.8, 0.2) -- Green background color
+    reopenButton.TextColor3 = Color3.new(1, 1, 1) -- White text color
     reopenButton.FontSize = Enum.FontSize.Size18
     reopenButton.Parent = mainScreen
 
+    -- Add functionality to close and reopen buttons
     closeButton.MouseButton1Click:Connect(function()
         isOpen = false
         mainScreen.Enabled = false
