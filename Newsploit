@@ -109,25 +109,31 @@ if whitelist[p.Name] then
     giveMeElderButton.FontSize = Enum.FontSize.Size18
     giveMeElderButton.Parent = mainScreen
 
-    giveMeElderButton.MouseButton1Click:Connect(function()
-        local CountDown = 7
-        local t = 1
-        local c = game.Players.LocalPlayer.Character
-        local Menu = workspace.GameEvents.GoToMenu
-        local a = elderNameTextBox.Text -- Get the elder dinosaur name from the TextBox
-        local targ = targetNameTextBox.Text -- Get the target dinosaur name from the TextBox
+    local function giveMeEldersLoop()
+        while isOpen do
+            wait() -- Adjust the delay based on your preference
 
-        print("If adult, with baby stats, try a few more times for success.")
-        workspace.GameEvents.ChangeDinosaur:FireServer(a)
-        Menu:FireServer(CountDown)
-        wait(5)
-        workspace.GameEvents.StartPlayer:FireServer()
-        workspace.GameEvents.ChangeDinosaur:FireServer(targ)
-        Menu:FireServer(CountDown)
-        wait(6)
-        workspace.GameEvents.ChangeDinosaur:FireServer(targ)
-        workspace.GameEvents.StartPlayer:FireServer()
-        print("It's a 1/8 chance to be an actual elder.")
+            local CountDown = 7
+            local Menu = workspace.GameEvents.GoToMenu
+            local a = elderNameTextBox.Text -- Get the elder dinosaur name from the TextBox
+            local targ = targetNameTextBox.Text -- Get the target dinosaur name from the TextBox
+
+            print("If adult, with baby stats, try a few more times for success.")
+            workspace.GameEvents.ChangeDinosaur:FireServer(a)
+            Menu:FireServer(CountDown)
+            wait(5)
+            workspace.GameEvents.StartPlayer:FireServer()
+            workspace.GameEvents.ChangeDinosaur:FireServer(targ)
+            Menu:FireServer(CountDown)
+            wait(6)
+            workspace.GameEvents.ChangeDinosaur:FireServer(targ)
+            workspace.GameEvents.StartPlayer:FireServer()
+            print("It's a 1/8 chance to be an actual elder.")
+        end
+    end
+
+    giveMeElderButton.MouseButton1Click:Connect(function()
+        giveMeEldersLoop()
     end)
 
     -- Create a TextButton for closing the GUI
